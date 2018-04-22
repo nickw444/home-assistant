@@ -146,8 +146,9 @@ class BOMCurrentSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        if self.rest.data and self._condition in self.rest.data:
-            return self.rest.data[self._condition]
+        reading = self.rest.get_reading(self._condition)
+        if reading is not None and reading != '-':
+            return reading
 
         return STATE_UNKNOWN
 
@@ -156,11 +157,11 @@ class BOMCurrentSensor(Entity):
         """Return the state attributes of the device."""
         attr = {}
         attr['Sensor Id'] = self._condition
-        attr['Zone Id'] = self.rest.data['history_product']
-        attr['Station Id'] = self.rest.data['wmo']
-        attr['Station Name'] = self.rest.data['name']
+        attr['Zone Id'] = self.rest.latest_data['history_product']
+        attr['Station Id'] = self.rest.latest_data['wmo']
+        attr['Station Name'] = self.rest.latest_data['name']
         attr['Last Update'] = datetime.datetime.strptime(str(
-            self.rest.data['local_date_time_full']), '%Y%m%d%H%M%S')
+            self.rest.latest_data['local_date_time_full']), '%Y%m%d%H%M%S')
         attr[ATTR_ATTRIBUTION] = CONF_ATTRIBUTION
         return attr
 
@@ -181,13 +182,39 @@ class BOMCurrentData(object):
         """Initialize the data object."""
         self._hass = hass
         self._zone_id, self._wmo_id = station_id.split('.')
-        self.data = None
+        self._data = None
         self._lastupdate = LAST_UPDATE
 
     def _build_url(self):
         url = _RESOURCE.format(self._zone_id, self._zone_id, self._wmo_id)
         _LOGGER.info("BOM URL %s", url)
         return url
+
+    @property
+    def latest_data(self):
+        """Return the latest data object"""
+        if self._data and len(self._data) > 0:
+            return self._data[0]
+        return None
+
+    def get_reading(self, condition):
+        """Return the value for the given condition
+
+        BOM weather publishes condition readings for weather (and a few other
+        conditions) at intervals throughout the day. To avoid a `-` value in
+        the frontend for these conditions, we traverse the historical data
+        for the latest value that is not `-`.
+
+        Iterators are used in this method to avoid iterating needlessly
+        iterating through the entire BOM provided dataset
+        """
+        item_filter = lambda x: True
+        if condition in ['weather', 'sea_state']:
+            # Take the first non '-' reading.
+            item_filter = lambda x: x is not None and x != '-'
+
+        condition_readings = (entry[condition] for entry in self._data)
+        return next((x for x in condition_readings if item_filter(x)), None)
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
@@ -202,13 +229,13 @@ class BOMCurrentData(object):
 
         try:
             result = requests.get(self._build_url(), timeout=10).json()
-            self.data = result['observations']['data'][0]
+            self._data = result['observations']['data']
             self._lastupdate = datetime.datetime.strptime(
-                str(self.data['local_date_time_full']), '%Y%m%d%H%M%S')
+                str(self.latest_data['local_date_time_full']), '%Y%m%d%H%M%S')
             return self._lastupdate
         except ValueError as err:
             _LOGGER.error("Check BOM %s", err.args)
-            self.data = None
+            self._data = None
             raise
 
 
