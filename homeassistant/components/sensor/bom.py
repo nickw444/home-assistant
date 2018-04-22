@@ -19,8 +19,8 @@ import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
-    CONF_MONITORED_CONDITIONS, TEMP_CELSIUS, STATE_UNKNOWN, CONF_NAME,
-    ATTR_ATTRIBUTION, CONF_LATITUDE, CONF_LONGITUDE)
+    CONF_MONITORED_CONDITIONS, TEMP_CELSIUS, CONF_NAME, ATTR_ATTRIBUTION,
+    CONF_LATITUDE, CONF_LONGITUDE)
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
 import homeassistant.helpers.config_validation as cv
@@ -188,13 +188,13 @@ class BOMCurrentData(object):
 
     @property
     def latest_data(self):
-        """Return the latest data object"""
+        """Return the latest data object."""
         if self._data:
             return self._data[0]
         return None
 
     def get_reading(self, condition):
-        """Return the value for the given condition
+        """Return the value for the given condition.
 
         BOM weather publishes condition readings for weather (and a few other
         conditions) at intervals throughout the day. To avoid a `-` value in
@@ -205,6 +205,7 @@ class BOMCurrentData(object):
         iterating through the entire BOM provided dataset
         """
         def item_filter(value):
+            """Filters items from a set of condition readings."""
             if condition == 'weather':
                 # Take the first non '-' reading for weather
                 return value is not None and value != '-'

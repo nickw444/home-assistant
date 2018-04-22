@@ -26,7 +26,6 @@ VALID_CONFIG = {
 
 def mocked_requests(*args, **kwargs):
     """Mock requests.get invocations."""
-
     class MockResponse:
         """Class to represent a mocked response."""
 
@@ -86,7 +85,7 @@ class TestBOMWeatherSensor(unittest.TestCase):
 
     @patch('requests.get', side_effect=mocked_requests)
     def test_sensor_values(self, mock_get):
-        """Test retrieval of sensor values"""
+        """Test retrieval of sensor values."""
         self.assertTrue(setup_component(
             self.hass, sensor.DOMAIN, {'sensor': VALID_CONFIG}))
 
