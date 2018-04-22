@@ -81,7 +81,7 @@ class TestBOMWeatherSensor(unittest.TestCase):
             'bom_fake_weather']
 
         for entity_id in fake_entities:
-            state = self.hass.states.get(f'sensor.{entity_id}')
+            state = self.hass.states.get('sensor.{}'.format(entity_id))
             self.assertIsNotNone(state)
 
     @patch('requests.get', side_effect=mocked_requests)
