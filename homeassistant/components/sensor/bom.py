@@ -213,7 +213,8 @@ class BOMCurrentData(object):
             return True
 
         condition_readings = (entry[condition] for entry in self._data)
-        latest_reading = next((x for x in condition_readings if item_filter(x)), None)
+        latest_reading = next(
+            (x for x in condition_readings if item_filter(x)), None)
         if latest_reading == '-':
             # Show a unknown state if a '-' value is encountered.
             return None
