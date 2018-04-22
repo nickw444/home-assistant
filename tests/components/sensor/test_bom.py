@@ -53,7 +53,7 @@ def mocked_requests(*args, **kwargs):
     if re.match(r'^/fwo/[\w]+/[\w.]+\.json', url.path):
         return MockResponse(json.loads(load_fixture('bom_weather.json')), 200)
 
-    raise NotImplementedError(f'Unknown route {url.path}')
+    raise NotImplementedError('Unknown route {}'.format(url.path))
 
 
 class TestBOMWeatherSensor(unittest.TestCase):
@@ -91,8 +91,8 @@ class TestBOMWeatherSensor(unittest.TestCase):
             self.hass, sensor.DOMAIN, {'sensor': VALID_CONFIG}))
 
         self.assertEqual('Fine', self.hass.states.get(
-            f'sensor.bom_fake_weather').state)
+            'sensor.bom_fake_weather').state)
         self.assertEqual('1021.7', self.hass.states.get(
-            f'sensor.bom_fake_pressure_mb').state)
+            'sensor.bom_fake_pressure_mb').state)
         self.assertEqual('25.0', self.hass.states.get(
-            f'sensor.bom_fake_feels_like_c').state)
+            'sensor.bom_fake_feels_like_c').state)
