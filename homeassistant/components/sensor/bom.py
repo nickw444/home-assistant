@@ -146,11 +146,7 @@ class BOMCurrentSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        reading = self.rest.get_reading(self._condition)
-        if reading is not None and reading != '-':
-            return reading
-
-        return STATE_UNKNOWN
+        return self.rest.get_reading(self._condition)
 
     @property
     def device_state_attributes(self):
@@ -193,7 +189,7 @@ class BOMCurrentData(object):
     @property
     def latest_data(self):
         """Return the latest data object"""
-        if self._data and len(self._data) > 0:
+        if self._data:
             return self._data[0]
         return None
 
@@ -217,7 +213,11 @@ class BOMCurrentData(object):
             return True
 
         condition_readings = (entry[condition] for entry in self._data)
-        return next((x for x in condition_readings if item_filter(x)), None)
+        latest_reading = next((x for x in condition_readings if item_filter(x)), None)
+        if latest_reading == '-':
+            # Show a unknown state if a '-' value is encountered.
+            return None
+        return latest_reading
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
