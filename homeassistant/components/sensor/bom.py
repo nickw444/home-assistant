@@ -204,7 +204,7 @@ class BOMCurrentData(object):
         Iterators are used in this method to avoid iterating needlessly
         iterating through the entire BOM provided dataset
         """
-        def item_filter(value):
+        def should_include_value(value):
             """Filters items from a set of condition readings."""
             if condition == 'weather':
                 # Take the first non '-' reading for weather
@@ -215,7 +215,7 @@ class BOMCurrentData(object):
 
         condition_readings = (entry[condition] for entry in self._data)
         latest_reading = next(
-            (x for x in condition_readings if item_filter(x)), None)
+            (x for x in condition_readings if should_include_value(x)), None)
         if latest_reading == '-':
             # Show a unknown state if a '-' value is encountered.
             return None
