@@ -205,7 +205,7 @@ class BOMCurrentData(object):
         iterating through the entire BOM provided dataset
         """
         def should_include_value(value):
-            """Filters items from a set of condition readings."""
+            """Filter items from a set of condition readings."""
             if condition == 'weather':
                 # Take the first non '-' reading for weather
                 return value is not None and value != '-'
