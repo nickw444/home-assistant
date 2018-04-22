@@ -208,10 +208,13 @@ class BOMCurrentData(object):
         Iterators are used in this method to avoid iterating needlessly
         iterating through the entire BOM provided dataset
         """
-        item_filter = lambda x: True
-        if condition in ['weather', 'sea_state']:
-            # Take the first non '-' reading.
-            item_filter = lambda x: x is not None and x != '-'
+        def item_filter(value):
+            if condition == 'weather':
+                # Take the first non '-' reading for weather
+                return value is not None and value != '-'
+
+            # By default, take the first value regardless
+            return True
 
         condition_readings = (entry[condition] for entry in self._data)
         return next((x for x in condition_readings if item_filter(x)), None)
