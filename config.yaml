@@ -1,0 +1,21 @@
+sensor:
+  - platform: nsw_fuel_station
+    station_id: 530
+    # sensor.nsw_fuel_station_xxx_p95       128.4c
+    # sensor.nsw_fuel_station_xxx_e10       128.4c
+
+  - platform: nsw_fuel_nearby
+    radius: 10 # (km)
+    fuel_type: E10
+    latitude:
+    longitude:
+    # sensor.nsw_fuel_station_cheapest_p95  'Woolworths Blakehurst'
+    # sensor.nsw_fuel_station_cheapest_e10  'Woolworths Blakehurst'
+    # sensor.nsw_fuel_station_cheapest_p95_price  128.4c
+    # sensor.nsw_fuel_station_cheapest_e10_price  128.4c
+
+  - platform: nsw_fuel_trend
+    latitude:
+    longitude:
+    fuel_type: E10
+    # sensor.nsw_fuel_trend_e10        'increasing', 'decreasing'

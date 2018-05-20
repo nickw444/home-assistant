@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "9fc1aa28-bc4c-42f7-b63f-12d771d31b69",
+		"name": "Fuel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetFuelPricesWithinRadius",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://www.fuelcheck.nsw.gov.au"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Referer",
+						"value": "https://www.fuelcheck.nsw.gov.au/app/FuelPrice/Trend?fuelTypeCode=E10"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "DNT",
+						"value": "1"
+					},
+					{
+						"key": "requesttimestamp",
+						"value": "20/05/2018 11:53:00 AM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fueltype\":\"P95\",\n    \"brand\":[],\n    \"latitude\":\"-33.989523\",\n    \"longitude\":\"151.091573\",\n    \"radius\":\"10\",\n    \"sortby\": \"distance\",\n}"
+				},
+				"url": {
+					"raw": "https://api.onegov.nsw.gov.au/FuelCheckApp/v1/fuel/prices/nearby",
+					"protocol": "https",
+					"host": [
+						"api",
+						"onegov",
+						"nsw",
+						"gov",
+						"au"
+					],
+					"path": [
+						"FuelCheckApp",
+						"v1",
+						"fuel",
+						"prices",
+						"nearby"
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://api.onegov.nsw.gov.au/FuelCheckApp/v1/fuel/prices/trends/' -H 'Origin: https://www.fuelcheck.nsw.gov.au' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Referer: https://www.fuelcheck.nsw.gov.au/app/FuelPrice/Trend?fuelTypeCode=E10' -H 'Connection: keep-alive' -H 'DNT: 1' --data-binary '{\\\"location\\\":{\\\"latitude\\\":-33.8708464,\\\"longitude\\\":151.20732999999998},\\\"fueltypes\\\":[{\\\"code\\\":\\\"E10\\\"}]}' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "Trends",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://www.fuelcheck.nsw.gov.au"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Referer",
+						"value": "https://www.fuelcheck.nsw.gov.au/app/FuelPrice/Trend?fuelTypeCode=E10"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "DNT",
+						"value": "1"
+					},
+					{
+						"key": "requesttimestamp",
+						"value": "20/05/2018 11:53:00 AM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fueltype\":\"P95\",\n    \"brand\":[],\n    \"latitude\":\"-33.989523\",\n    \"longitude\":\"151.091573\",\n    \"radius\":\"10\",\n    \"sortby\": \"distance\",\n}"
+				},
+				"url": {
+					"raw": "https://api.onegov.nsw.gov.au/FuelCheckApp/v1/fuel/prices/nearby",
+					"protocol": "https",
+					"host": [
+						"api",
+						"onegov",
+						"nsw",
+						"gov",
+						"au"
+					],
+					"path": [
+						"FuelCheckApp",
+						"v1",
+						"fuel",
+						"prices",
+						"nearby"
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://api.onegov.nsw.gov.au/FuelCheckApp/v1/fuel/prices/trends/' -H 'Origin: https://www.fuelcheck.nsw.gov.au' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Referer: https://www.fuelcheck.nsw.gov.au/app/FuelPrice/Trend?fuelTypeCode=E10' -H 'Connection: keep-alive' -H 'DNT: 1' --data-binary '{\\\"location\\\":{\\\"latitude\\\":-33.8708464,\\\"longitude\\\":151.20732999999998},\\\"fueltypes\\\":[{\\\"code\\\":\\\"E10\\\"}]}' --compressed"
+			},
+			"response": []
+		},
+		{
+			"name": "GetFuelPricesForStation",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "https://www.fuelcheck.nsw.gov.au"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "Referer",
+						"value": "https://www.fuelcheck.nsw.gov.au/app/FuelPrice/Trend?fuelTypeCode=E10"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "DNT",
+						"value": "1"
+					},
+					{
+						"key": "requesttimestamp",
+						"value": "20/05/2018 11:53:00 AM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.onegov.nsw.gov.au/FuelCheckApp/v1/fuel/prices/station/2119",
+					"protocol": "https",
+					"host": [
+						"api",
+						"onegov",
+						"nsw",
+						"gov",
+						"au"
+					],
+					"path": [
+						"FuelCheckApp",
+						"v1",
+						"fuel",
+						"prices",
+						"station",
+						"2119"
+					]
+				},
+				"description": "Generated from a curl request: \ncurl 'https://api.onegov.nsw.gov.au/FuelCheckApp/v1/fuel/prices/trends/' -H 'Origin: https://www.fuelcheck.nsw.gov.au' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36' -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json, text/plain, */*' -H 'Referer: https://www.fuelcheck.nsw.gov.au/app/FuelPrice/Trend?fuelTypeCode=E10' -H 'Connection: keep-alive' -H 'DNT: 1' --data-binary '{\\\"location\\\":{\\\"latitude\\\":-33.8708464,\\\"longitude\\\":151.20732999999998},\\\"fueltypes\\\":[{\\\"code\\\":\\\"E10\\\"}]}' --compressed"
+			},
+			"response": []
+		}
+	]
+}

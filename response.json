@@ -1,0 +1,1844 @@
+[
+  {
+    "ServiceStationID": 2093,
+    "Name": "Westside Blakehurst",
+    "Lat": -33.986627,
+    "Long": 151.112644,
+    "Price": 143.9,
+    "Address": "338 Princes Highway, Blakehurst NSW 2221",
+    "Brand": "Westside",
+    "Distance": 1.71,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 129.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 143.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 141.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 185,
+    "Name": "7-Eleven South Hurstville",
+    "Lat": -33.975997,
+    "Long": 151.10364,
+    "Price": 143.9,
+    "Address": "822 King Georges Road & Joffre St, South Hurstville NSW 2220",
+    "Brand": "7-Eleven",
+    "Distance": 2.45,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 129.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 131.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 143.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 74.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1574,
+    "Name": "7 Express Carlton",
+    "Lat": -33.969142,
+    "Long": 151.122205,
+    "Price": 143.9,
+    "Address": "370 Railway Parade, Carlton NSW 2216",
+    "Brand": "Independent",
+    "Distance": 3.79,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 129.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 132.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 143.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 530,
+    "Name": "Caltex Woolworths Blakehurst",
+    "Lat": -33.990209,
+    "Long": 151.113624,
+    "Price": 145.9,
+    "Address": "390 Princes Highway, Blakehurst NSW 2221",
+    "Brand": "Caltex Woolworths",
+    "Distance": 1.52,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 131.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 133.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 152.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1517,
+    "Name": "Budget Kogarah",
+    "Lat": -33.974841,
+    "Long": 151.12831,
+    "Price": 145.9,
+    "Address": "132 Princes Hway, Kogarah NSW 2217",
+    "Brand": "Budget",
+    "Distance": 3.66,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 129.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 132.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 142.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 17103,
+    "Name": "Caltex Star Mart Penshurst",
+    "Lat": -33.959853,
+    "Long": 151.089112,
+    "Price": 145.9,
+    "Address": "641 King Georges Rd, PENSHURST NSW 2222",
+    "Brand": "Caltex",
+    "Distance": 4.34,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 131.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 152.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 155.8,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 17109,
+    "Name": "BP Riverwood",
+    "Lat": -33.955687,
+    "Long": 151.051192,
+    "Price": 146.9,
+    "Address": "189-191 Belmore Rd, RIVERWOOD NSW 2210",
+    "Brand": "BP",
+    "Distance": 6.5,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 133.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 146.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 156.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 131.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 68.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1926,
+    "Name": "BP Kirrawee",
+    "Lat": -34.032299,
+    "Long": 151.071152,
+    "Price": 147.9,
+    "Address": "596 Princes Highway, Kirrawee NSW 2232",
+    "Brand": "BP",
+    "Distance": 4.66,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 137.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 147.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 143.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1611,
+    "Name": "BP Lugarno",
+    "Lat": -33.97741,
+    "Long": 151.046923,
+    "Price": 147.9,
+    "Address": "1046 Forest Road, Lugarno NSW 2210",
+    "Brand": "BP",
+    "Distance": 5.4,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 147.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 155.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 134.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 862,
+    "Name": "Caltex Sylvania Heights",
+    "Lat": -34.023685,
+    "Long": 151.089322,
+    "Price": 149.9,
+    "Address": "414-416 Princes Hwy, Sylvania Heights NSW 2224",
+    "Brand": "Caltex",
+    "Distance": 3.03,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 137.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 156.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 150.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 16887,
+    "Name": "Caltex Taren Point",
+    "Lat": -34.020656,
+    "Long": 151.121892,
+    "Price": 149.9,
+    "Address": "114 Taren Point Rd, TAREN POINT NSW 2229",
+    "Brand": "Caltex",
+    "Distance": 3.24,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 133.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 158.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 159.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 537,
+    "Name": "Caltex Kirrawee",
+    "Lat": -34.029292,
+    "Long": 151.080877,
+    "Price": 149.9,
+    "Address": "487 Princes Hwy, Kirrawee NSW 2232",
+    "Brand": "Caltex",
+    "Distance": 3.91,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 137.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "E85",
+        "Price": 127.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 156.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 146.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 79.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1848,
+    "Name": "Metro Fuel Kogarah",
+    "Lat": -33.976923,
+    "Long": 151.136821,
+    "Price": 149.9,
+    "Address": "120 Rocky Points Rd, Kogarah NSW 2217",
+    "Brand": "Metro Fuel",
+    "Distance": 4.12,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 134.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 162,
+    "Name": "7-Eleven Sutherland",
+    "Lat": -34.029795,
+    "Long": 151.058951,
+    "Price": 149.9,
+    "Address": "693 Old Princes Highway (Retank Reopens 23 Jun'16), Sutherland NSW 2232",
+    "Brand": "7-Eleven",
+    "Distance": 5.19,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 137.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 155.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 146.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1484,
+    "Name": "United Sutherland",
+    "Lat": -34.030131,
+    "Long": 151.0575,
+    "Price": 150.9,
+    "Address": "1-3 East Parade, Sutherland NSW 2232",
+    "Brand": "United",
+    "Distance": 5.31,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 138.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 150.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1981,
+    "Name": "BP Bexley",
+    "Lat": -33.957412,
+    "Long": 151.118092,
+    "Price": 151.9,
+    "Address": "610 Forest Road, Bexley NSW 2207",
+    "Brand": "BP",
+    "Distance": 4.79,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 151.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 161.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1584,
+    "Name": "Independent Kogarah",
+    "Lat": -33.973716,
+    "Long": 151.146124,
+    "Price": 151.9,
+    "Address": "81 Barton St, Kogarah NSW 2217",
+    "Brand": "Independent",
+    "Distance": 5.03,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 143.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 151.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 58,
+    "Name": "Coles Express South Hurstville",
+    "Lat": -33.978745,
+    "Long": 151.105526,
+    "Price": 153.9,
+    "Address": "835 King Georges Road, South Hurstville NSW 2221",
+    "Brand": "Coles Express",
+    "Distance": 2.18,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 160.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1843,
+    "Name": "BP Carss Park",
+    "Lat": -33.982002,
+    "Long": 151.11782,
+    "Price": 153.9,
+    "Address": "294 Princess Hwy, Carss Park NSW 2221",
+    "Brand": "BP",
+    "Distance": 2.41,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 137.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 159.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 557,
+    "Name": "Coles Express Taren Point",
+    "Lat": -34.020123,
+    "Long": 151.122117,
+    "Price": 153.9,
+    "Address": "102-108 Taren Point Road, Taren Point NSW 2229",
+    "Brand": "Coles Express",
+    "Distance": 3.2,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 137.4,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 160.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 47,
+    "Name": "Coles Express Carlton",
+    "Lat": -33.974858,
+    "Long": 151.127273,
+    "Price": 153.9,
+    "Address": "277-281 Princes Highway, Carlton NSW 2218",
+    "Brand": "Coles Express",
+    "Distance": 3.59,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 137.4,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 160.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 14,
+    "Name": "Coles Express Taren Point",
+    "Lat": -34.026377,
+    "Long": 151.120108,
+    "Price": 153.9,
+    "Address": "99 Parraweena Rd (Cnr Taren Point Rd), Miranda NSW 2228",
+    "Brand": "Coles Express",
+    "Distance": 3.67,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 137.4,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 160.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 167.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 59,
+    "Name": "Coles Express Ramsgate",
+    "Lat": -33.985745,
+    "Long": 151.147385,
+    "Price": 153.9,
+    "Address": "274-276 Grand Parade (Cnr Ramsgate Rd), Ramsgate NSW 2217",
+    "Brand": "Coles Express",
+    "Distance": 4.58,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 160.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 2119,
+    "Name": "BP South Hurstville",
+    "Lat": -33.978065,
+    "Long": 151.104216,
+    "Price": 156.9,
+    "Address": "61-63 Connells Point South, HURSTVILLE NSW 2221",
+    "Brand": "BP",
+    "Distance": 2.23,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 139.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 156.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 164.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 114,
+    "Name": "Coles Express Gymea",
+    "Lat": -34.027079,
+    "Long": 151.084243,
+    "Price": 157.4,
+    "Address": "470 Princes Hwy (Cnr The Boulevarde), Gymea NSW 2232",
+    "Brand": "Coles Express",
+    "Distance": 3.55,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 140.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 157.4,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 164.4,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 86.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1540,
+    "Name": "Budget Oatley",
+    "Lat": -33.982328,
+    "Long": 151.079144,
+    "Price": 157.9,
+    "Address": "12B Oatley Parade, Oatley NSW 2223",
+    "Brand": "Budget",
+    "Distance": 2.59,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 135.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 144.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 145.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 3,
+    "Name": "Coles Express Oyster Bay",
+    "Lat": -34.00934,
+    "Long": 151.07548,
+    "Price": 157.9,
+    "Address": "26-28 Georges River Rd (Cnr Carvers Rd), Oyster Bay NSW 2225",
+    "Brand": "Coles Express",
+    "Distance": 2.6,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 139.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 164.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 102,
+    "Name": "Coles Express Hurstville",
+    "Lat": -33.964882,
+    "Long": 151.09907,
+    "Price": 157.9,
+    "Address": "396-404 Forest Road, Hurstville NSW 2220",
+    "Brand": "Coles Express",
+    "Distance": 3.66,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 139.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 164.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 1641,
+    "Name": "BP Sans Souci",
+    "Lat": -33.992469,
+    "Long": 151.132408,
+    "Price": 169.9,
+    "Address": "518 Rocky Point Road, Sans Souci NSW 2219",
+    "Brand": "BP",
+    "Distance": 3.05,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 169.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 179.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "DL",
+        "Price": 149.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 152.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 299,
+    "Name": "BP Connect Mortdale",
+    "Lat": -33.970669,
+    "Long": 151.073689,
+    "Price": 171.9,
+    "Address": "21 Boundary Road, Mortdale NSW 2223",
+    "Brand": "BP",
+    "Distance": 3.87,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "U91",
+        "Price": 159.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 179.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 79.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 651,
+    "Name": "Caltex Woolworths Miranda",
+    "Lat": -34.034961,
+    "Long": 151.112571,
+    "Price": 171.9,
+    "Address": "Cnr The Kingsway & Port Hacking Road, Miranda NSW 2228",
+    "Brand": "Caltex Woolworths",
+    "Distance": 4.27,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 159.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 79.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 349,
+    "Name": "BP Connect Caringbah",
+    "Lat": -34.032899,
+    "Long": 151.125228,
+    "Price": 171.9,
+    "Address": "Cnr Captain Cook Dve & Cawarra Rd, Caringbah NSW 2229",
+    "Brand": "BP",
+    "Distance": 4.53,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 179.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 156.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 79.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 679,
+    "Name": "Caltex Woolworths Kogarah",
+    "Lat": -33.963237,
+    "Long": 151.137173,
+    "Price": 171.9,
+    "Address": "69 Princes Hwy (cnr Gladstone St), Kogarah NSW 2217",
+    "Brand": "Caltex Woolworths",
+    "Distance": 5.15,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 178.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 2474,
+    "Name": "Caltex Kogarah",
+    "Lat": -33.965163,
+    "Long": 151.14115,
+    "Price": 171.9,
+    "Address": "29 President Ave, KOGARAH NSW 2217",
+    "Brand": "Caltex",
+    "Distance": 5.26,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 159.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 178.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 156.3,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 79.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 675,
+    "Name": "Caltex Woolworths Peakhurst",
+    "Lat": -33.957531,
+    "Long": 151.068137,
+    "Price": 171.9,
+    "Address": "742 Forest Road, Peakhurst NSW 2210",
+    "Brand": "Caltex Woolworths",
+    "Distance": 5.36,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 178.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 154.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  },
+  {
+    "ServiceStationID": 529,
+    "Name": "Caltex Woolworths Woolooware",
+    "Lat": -34.038651,
+    "Long": 151.143747,
+    "Price": 171.9,
+    "Address": "449 Captain Cook Drive, Woolooware NSW 2230",
+    "Brand": "Caltex Woolworths",
+    "Distance": 6.07,
+    "IsAlternate": false,
+    "Prices": [
+      {
+        "FuelType": "E10",
+        "Price": 157.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "U91",
+        "Price": 159.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P95",
+        "Price": 171.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "P98",
+        "Price": 178.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "PDL",
+        "Price": 153.9,
+        "Unit": "litre",
+        "Description": null
+      },
+      {
+        "FuelType": "LPG",
+        "Price": 79.9,
+        "Unit": "litre",
+        "Description": null
+      }
+    ],
+    "revisedwindow": false,
+    "window": {
+      "bottomleft": {
+        "latitude": -34.04223998761286,
+        "longitude": 151.0450661393286
+      },
+      "topright": {
+        "latitude": -33.95350517088142,
+        "longitude": 151.1549294205786
+      }
+    }
+  }
+]
