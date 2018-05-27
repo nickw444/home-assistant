@@ -1,6 +1,9 @@
 sensor:
-  - platform: nsw_fuel_station
+  - platform: nsw_fuel_station_price
     station_id: 530
+    fuel_types:
+      - e10
+      - p95
     # sensor.nsw_fuel_station_xxx_p95       128.4c
     # sensor.nsw_fuel_station_xxx_e10       128.4c
 
@@ -13,6 +16,7 @@ sensor:
     # sensor.nsw_fuel_station_cheapest_e10  'Woolworths Blakehurst'
     # sensor.nsw_fuel_station_cheapest_p95_price  128.4c
     # sensor.nsw_fuel_station_cheapest_e10_price  128.4c
+
 
   - platform: nsw_fuel_trend
     latitude:
