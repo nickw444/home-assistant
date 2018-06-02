@@ -4,7 +4,6 @@ Support for NSW Fuel.
 For more details about this component, please refer to the documentation at
 https://home-assistant.io/components/nsw-fuel/
 """
-import voluptuous as vol
 
 # REQUIREMENTS = ['nsw-fuel-api-client==1.0.0']
 
