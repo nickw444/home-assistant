@@ -1,0 +1,17 @@
+{
+  "domain": "deebot_t8",
+  "name": "Ecovacs Deebot T8",
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/deebot_t8",
+  "requirements": [
+    "deebot-t8==0.0.1b1"
+  ],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": [
+    "@nickw444"
+  ],
+  "iot_class": "cloud_push"
+}

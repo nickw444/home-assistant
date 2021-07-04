@@ -272,6 +272,9 @@ datapoint==0.9.5
 # homeassistant.components.debugpy
 debugpy==1.3.0
 
+# homeassistant.components.deebot_t8
+deebot-t8==0.0.1b1
+
 # homeassistant.components.ihc
 # homeassistant.components.namecheapdns
 # homeassistant.components.ohmconnect
