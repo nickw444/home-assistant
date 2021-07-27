@@ -28,6 +28,7 @@ FLOWS = [
     "atag",
     "august",
     "aurora",
+    "aussie_broadband",
     "automate",
     "awair",
     "axis",
