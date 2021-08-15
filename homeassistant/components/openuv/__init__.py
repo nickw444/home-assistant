@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import asyncio
-from collections.abc import MutableMapping
 from typing import Any
 
 from pyopenuv import Client
@@ -60,8 +59,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
                 config_entry.data[CONF_API_KEY],
                 config_entry.data.get(CONF_LATITUDE, hass.config.latitude),
                 config_entry.data.get(CONF_LONGITUDE, hass.config.longitude),
-                websession,
                 altitude=config_entry.data.get(CONF_ELEVATION, hass.config.elevation),
+                session=websession,
             )
         )
         await openuv.async_update()
@@ -169,9 +168,7 @@ class OpenUvEntity(Entity):
 
     def __init__(self, openuv: OpenUV, sensor_type: str) -> None:
         """Initialize."""
-        self._attr_extra_state_attributes: MutableMapping[str, Any] = {
-            ATTR_ATTRIBUTION: DEFAULT_ATTRIBUTION
-        }
+        self._attr_extra_state_attributes = {ATTR_ATTRIBUTION: DEFAULT_ATTRIBUTION}
         self._attr_should_poll = False
         self._attr_unique_id = (
             f"{openuv.client.latitude}_{openuv.client.longitude}_{sensor_type}"
