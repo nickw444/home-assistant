@@ -12,8 +12,9 @@ from homeassistant.helpers.update_coordinator import (
 )
 
 from . import DOMAIN
+from ...const import DATA_MEGABYTES
 from ...core import HomeAssistant
-from ..sensor import SensorEntity
+from ..sensor import STATE_CLASS_TOTAL_INCREASING, SensorEntity
 from .const import CONF_SERVICE_ID
 
 _LOGGER = logging.getLogger(__name__)
@@ -42,60 +43,75 @@ async def async_setup_entry(
 
     async_add_entities(
         [
-            CounterEntity(coordinator, service_id, "Total Usage", "usedMb", "MB"),
-            CounterEntity(coordinator, service_id, "Downloaded", "downloadedMb", "MB"),
-            CounterEntity(coordinator, service_id, "Uploaded", "uploadedMb", "MB"),
-            CounterEntity(
-                coordinator, service_id, "Billing Cycle Length", "daysTotal", "days"
-            ),
-            CounterEntity(
-                coordinator,
-                service_id,
-                "Billing Cycle Remaining",
-                "daysRemaining",
-                "days",
-            ),
+            AussieBroadandTotalUsage(coordinator, service_id),
+            AussieBroadandDownloaded(coordinator, service_id),
+            AussieBroadandUploaded(coordinator, service_id),
+            AussieBroadandBillingCycleLength(coordinator, service_id),
+            AussieBroadandBillingCycleRemaining(coordinator, service_id),
         ]
     )
 
     return True
 
 
-class CounterEntity(CoordinatorEntity, SensorEntity):
-    """Representation of a Aussie Broadband counter metric sensor."""
+class AussieBroadandSensorEntity(CoordinatorEntity, SensorEntity):
+    """Base class for Aussie Broadband metric sensors."""
+
+    _attribute: str
 
     def __init__(
         self,
         coordinator: DataUpdateCoordinator,
         service_id: int,
-        name: str,
-        attribute: str,
-        unit_of_measurement: str,
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-
-        self._service_id = service_id
-        self._name = name
-        self._attribute = attribute
-        self._unit_of_measurement = unit_of_measurement
-
-    @property
-    def name(self):
-        """Return the name of the sensor."""
-        return self._name
-
-    @property
-    def unit_of_measurement(self):
-        """Return unit of measurement."""
-        return self._unit_of_measurement
+        self._attr_unique_id = f"{service_id}:{self._attribute}"
 
     @property
     def state(self):
         """Return the state of the device."""
         return self.coordinator.data[self._attribute]
 
-    @property
-    def unique_id(self) -> str | None:
-        """Return a unique ID."""
-        return str(self._service_id) + ":" + self._attribute
+
+class AussieBroadandTotalUsage(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Total Usage sensor."""
+
+    _attribute = "usedMb"
+    _attr_name = "Total Usage"
+    _attr_unit_of_measurement = DATA_MEGABYTES
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+
+class AussieBroadandDownloaded(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Download Usage sensor."""
+
+    _attribute = "downloadedMb"
+    _attr_name = "Downloaded"
+    _attr_unit_of_measurement = DATA_MEGABYTES
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+
+class AussieBroadandUploaded(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Upload Usage sensor."""
+
+    _attribute = "uploadedMb"
+    _attr_name = "Uploaded"
+    _attr_unit_of_measurement = DATA_MEGABYTES
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+
+class AussieBroadandBillingCycleLength(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Billing Cycle Length sensor."""
+
+    _attribute = "daysTotal"
+    _attr_name = "Billing Cycle Length"
+    _attr_unit_of_measurement = "days"
+
+
+class AussieBroadandBillingCycleRemaining(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Billing Cycle Remaining sensor."""
+
+    _attribute = "daysRemaining"
+    _attr_name = "Billing Cycle Remaining"
+    _attr_unit_of_measurement = "days"
