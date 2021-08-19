@@ -12,9 +12,10 @@ from homeassistant.data_entry_flow import (
     RESULT_TYPE_FORM,
 )
 
+
 async def test_form(hass: HomeAssistant) -> None:
     """Test the form happy path with a single service."""
-    result = await hass.config_entries.flow.async_init(
+    result1 = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": config_entries.SOURCE_USER}
     )
     assert result1["type"] == RESULT_TYPE_FORM
@@ -100,7 +101,7 @@ async def test_no_services(hass: HomeAssistant) -> None:
 
 
 async def test_form_duplicate_service(hass: HomeAssistant) -> None:
-    """Test form fails if adding a service twice"""
+    """Test form fails if adding a service twice."""
     result = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": config_entries.SOURCE_USER}
     )
@@ -112,7 +113,7 @@ async def test_form_duplicate_service(hass: HomeAssistant) -> None:
     ]
 
     with patch("aussiebb.AussieBB.__init__", return_value=None), patch(
-            "aussiebb.AussieBB.get_services", return_value=fake_services
+        "aussiebb.AussieBB.get_services", return_value=fake_services
     ), patch(
         "homeassistant.components.aussie_broadband.async_setup_entry",
         return_value=True,
@@ -135,7 +136,7 @@ async def test_form_duplicate_service(hass: HomeAssistant) -> None:
     assert result3["type"] == RESULT_TYPE_FORM
     assert result3["errors"] is None
     with patch("aussiebb.AussieBB.__init__", return_value=None), patch(
-            "aussiebb.AussieBB.get_services", return_value=fake_services
+        "aussiebb.AussieBB.get_services", return_value=fake_services
     ), patch(
         "homeassistant.components.aussie_broadband.async_setup_entry",
         return_value=True,
@@ -162,7 +163,7 @@ async def test_form_no_services(hass: HomeAssistant) -> None:
     assert result["errors"] is None
 
     with patch("aussiebb.AussieBB.__init__", return_value=None), patch(
-            "aussiebb.AussieBB.get_services", return_value=[]
+        "aussiebb.AussieBB.get_services", return_value=[]
     ):
         result2 = await hass.config_entries.flow.async_configure(
             result["flow_id"],
@@ -174,7 +175,7 @@ async def test_form_no_services(hass: HomeAssistant) -> None:
         await hass.async_block_till_done()
 
     assert result2["type"] == RESULT_TYPE_ABORT
-    assert result2["reason"] == "no_devices_found"
+    assert result2["reason"] == "no_services_found"
 
 
 async def test_form_multiple_services(hass: HomeAssistant) -> None:
@@ -240,7 +241,7 @@ async def test_form_multiple_services_duplicate(hass: HomeAssistant) -> None:
     ]
 
     with patch("aussiebb.AussieBB.__init__", return_value=None), patch(
-            "aussiebb.AussieBB.get_services", return_value=fake_services
+        "aussiebb.AussieBB.get_services", return_value=fake_services
     ):
         result2 = await hass.config_entries.flow.async_configure(
             result["flow_id"],
@@ -256,8 +257,8 @@ async def test_form_multiple_services_duplicate(hass: HomeAssistant) -> None:
     assert result2["errors"] is None
 
     with patch(
-            "homeassistant.components.aussie_broadband.async_setup_entry",
-            return_value=True,
+        "homeassistant.components.aussie_broadband.async_setup_entry",
+        return_value=True,
     ) as mock_setup_entry:
         result3 = await hass.config_entries.flow.async_configure(
             result["flow_id"],
@@ -281,7 +282,7 @@ async def test_form_multiple_services_duplicate(hass: HomeAssistant) -> None:
     assert result4["errors"] is None
 
     with patch("aussiebb.AussieBB.__init__", return_value=None), patch(
-            "aussiebb.AussieBB.get_services", return_value=fake_services
+        "aussiebb.AussieBB.get_services", return_value=fake_services
     ):
         result5 = await hass.config_entries.flow.async_configure(
             result4["flow_id"],
