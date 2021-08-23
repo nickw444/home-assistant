@@ -1,7 +1,7 @@
 """Test the Aussie Broadband init."""
 from unittest.mock import patch
 
-from aussiebb import AuthenticationException
+from aussiebb.asyncio import AuthenticationException
 import requests
 
 from homeassistant import data_entry_flow

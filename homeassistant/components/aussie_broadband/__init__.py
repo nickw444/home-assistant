@@ -1,13 +1,14 @@
 """The Aussie Broadband integration."""
 from __future__ import annotations
 
-from aussiebb import AussieBB, AuthenticationException
+from aussiebb.asyncio import AussieBB, AuthenticationException
 import requests
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import DOMAIN
 
@@ -17,20 +18,23 @@ PLATFORMS = ["sensor"]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Aussie Broadband from a config entry."""
 
-    def create_client():
-        try:
-            return AussieBB(entry.data[CONF_USERNAME], entry.data[CONF_PASSWORD])
-        except AuthenticationException as exc:
-            raise ConfigEntryAuthFailed() from exc
-        except (
-            requests.exceptions.ConnectionError,
-            requests.exceptions.HTTPError,
-        ) as exc:
-            raise ConfigEntryNotReady() from exc
+    try:
+        client = AussieBB(
+            entry.data[CONF_USERNAME],
+            entry.data[CONF_PASSWORD],
+            async_get_clientsession(hass),
+        )
+        await client.login()
 
-    hass.data.setdefault(DOMAIN, {})[
-        entry.entry_id
-    ] = await hass.async_add_executor_job(create_client)
+    except AuthenticationException as exc:
+        raise ConfigEntryAuthFailed() from exc
+    except (
+        requests.exceptions.ConnectionError,
+        requests.exceptions.HTTPError,
+    ) as exc:
+        raise ConfigEntryNotReady() from exc
+
+    hass.data.setdefault(DOMAIN, {})[entry.entry_id] = client
     hass.config_entries.async_setup_platforms(entry, PLATFORMS)
 
     return True

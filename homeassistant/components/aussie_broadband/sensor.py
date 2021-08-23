@@ -29,7 +29,7 @@ async def async_setup_entry(
     service_id = entry.data[CONF_SERVICE_ID]
 
     async def async_update_data():
-        return await hass.async_add_executor_job(client.get_usage, service_id)
+        return await client.get_usage(service_id)
 
     coordinator = DataUpdateCoordinator(
         hass,

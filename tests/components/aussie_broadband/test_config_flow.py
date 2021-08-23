@@ -1,7 +1,7 @@
 """Test the Aussie Broadband config flow."""
 from unittest.mock import patch
 
-from aussiebb import AuthenticationException
+from aussiebb.asyncio import AuthenticationException
 
 from homeassistant import config_entries, setup
 from homeassistant.components.aussie_broadband.const import DOMAIN
