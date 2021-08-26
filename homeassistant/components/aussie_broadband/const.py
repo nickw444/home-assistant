@@ -2,3 +2,4 @@
 
 DOMAIN = "aussie_broadband"
 CONF_SERVICE_ID = "service_id"
+CONF_SERVICES = "services"

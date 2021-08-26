@@ -25,31 +25,49 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
 ):
     """Set up Aussie Broadband sensor from a config entry."""
-    client = hass.data[DOMAIN][entry.entry_id]
-    service_id = entry.data[CONF_SERVICE_ID]
+    client = hass.data[DOMAIN][entry.entry_id]["client"]
+    services = hass.data[DOMAIN][entry.entry_id]["services"]
 
-    async def async_update_data():
-        return await client.get_usage(service_id)
+    entities = []
 
-    coordinator = DataUpdateCoordinator(
-        hass,
-        _LOGGER,
-        name="sensor",
-        update_interval=UPDATE_INTERVAL,
-        update_method=async_update_data,
-    )
-    await coordinator.async_refresh()
+    for service in services:
 
-    async_add_entities(
-        [
-            AussieBroadandTotalUsage(coordinator, service_id),
-            AussieBroadandDownloaded(coordinator, service_id),
-            AussieBroadandUploaded(coordinator, service_id),
-            AussieBroadandBillingCycleLength(coordinator, service_id),
-            AussieBroadandBillingCycleRemaining(coordinator, service_id),
-        ]
-    )
+        async def async_update_data():
+            if service.type == "PhoneMobile":
+                return await client.get_phoneusage(service[CONF_SERVICE_ID])
+            return await client.get_usage(service[CONF_SERVICE_ID])
 
+        coordinator = DataUpdateCoordinator(
+            hass,
+            _LOGGER,
+            name=service["service_id"],
+            update_interval=UPDATE_INTERVAL,
+            update_method=async_update_data,
+        )
+        await coordinator.async_refresh()
+
+        if service.type == "PhoneMobile":
+            entities.extend(
+                [
+                    # AussieBroadandTotalUsage(coordinator, service),
+                    AussieBroadandDownloaded(coordinator, service),
+                    # AussieBroadandUploaded(coordinator, service),
+                    AussieBroadandBillingCycleLength(coordinator, service),
+                    AussieBroadandBillingCycleRemaining(coordinator, service),
+                ]
+            )
+        else:
+            entities.extend(
+                [
+                    AussieBroadandTotalUsage(coordinator, service),
+                    AussieBroadandDownloaded(coordinator, service),
+                    AussieBroadandUploaded(coordinator, service),
+                    AussieBroadandBillingCycleLength(coordinator, service),
+                    AussieBroadandBillingCycleRemaining(coordinator, service),
+                ]
+            )
+
+    async_add_entities(entities)
     return True
 
 

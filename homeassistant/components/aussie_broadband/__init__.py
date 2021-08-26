@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import DOMAIN
+from .const import CONF_SERVICES, DOMAIN
 
 PLATFORMS = ["sensor"]
 
@@ -24,7 +24,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             entry.data[CONF_PASSWORD],
             async_get_clientsession(hass),
         )
-        await client.login()
+        # await client.login()
+        all_services = await client.get_services()
 
     except AuthenticationException as exc:
         raise ConfigEntryAuthFailed() from exc
@@ -34,7 +35,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     ) as exc:
         raise ConfigEntryNotReady() from exc
 
-    hass.data.setdefault(DOMAIN, {})[entry.entry_id] = client
+    services = next(
+        s for s in all_services if s["service_id"] in entry.data[CONF_SERVICES]
+    )
+
+    hass.data.setdefault(DOMAIN, {})[entry.entry_id] = {
+        client: client,
+        services: services,
+    }
     hass.config_entries.async_setup_platforms(entry, PLATFORMS)
 
     return True

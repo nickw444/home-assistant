@@ -9,8 +9,9 @@ import voluptuous as vol
 from homeassistant.config_entries import SOURCE_REAUTH, ConfigFlow as ConfigFlowBase
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 from homeassistant.data_entry_flow import FlowResult
+import homeassistant.helpers.config_validation as cv
 
-from .const import CONF_SERVICE_ID, DOMAIN
+from .const import CONF_SERVICES, DOMAIN
 
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
@@ -51,14 +52,12 @@ class ConfigFlow(ConfigFlowBase, domain=DOMAIN):
 
         if self.client is not None:
             self.data.update(user_input)
-            self.services = await self.hass.async_add_executor_job(
-                self.client.get_services
-            )
+            self.services = await self.client.get_services()
             if len(self.services) == 0:
                 return self.async_abort(reason="no_services_found")
 
             if len(self.services) == 1:
-                return await self.create_entry(self.services[0])
+                return await self.create_entry(self.services)
 
             # account has more than one service, select service to add
             return await self.async_step_service()
@@ -75,18 +74,13 @@ class ConfigFlow(ConfigFlowBase, domain=DOMAIN):
         """Handle the service selection step."""
 
         if user_input is not None:
-            service = next(
-                s
-                for s in self.services
-                if s["service_id"] == user_input[CONF_SERVICE_ID]
-            )
-            return await self.create_entry(service)
+            return await self.create_entry(user_input[CONF_SERVICES])
 
         service_options = {s["service_id"]: s["description"] for s in self.services}
         return self.async_show_form(
             step_id="service",
             data_schema=vol.Schema(
-                {vol.Required(CONF_SERVICE_ID): vol.In(service_options)}
+                {vol.Required(CONF_SERVICES): cv.multi_select(service_options)}
             ),
         )
 
@@ -96,17 +90,15 @@ class ConfigFlow(ConfigFlowBase, domain=DOMAIN):
         """Handle reauth."""
         return await self.async_step_user(user_input)
 
-    async def create_entry(self, service):
+    async def create_entry(self, services):
         """Create entry for a service."""
-        self.data[CONF_SERVICE_ID] = service["service_id"]
+        self.data[CONF_SERVICES] = services
 
-        entry = await self.async_set_unique_id(self.data[CONF_SERVICE_ID])
+        entry = await self.async_set_unique_id(self.data[CONF_USERNAME])
         if self.source == SOURCE_REAUTH:
-            self.hass.config_entries.async_update_entry(
-                entry, title=service["description"], data=self.data
-            )
+            self.hass.config_entries.async_update_entry(entry, data=self.data)
             await self.hass.config_entries.async_reload(entry.entry_id)
             return self.async_abort(reason="reauth_successful")
 
         self._abort_if_unique_id_configured()
-        return self.async_create_entry(title=service["description"], data=self.data)
+        return self.async_create_entry(title=self.data[CONF_USERNAME], data=self.data)
