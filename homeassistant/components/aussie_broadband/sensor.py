@@ -14,11 +14,11 @@ from homeassistant.helpers.update_coordinator import (
     DataUpdateCoordinator,
 )
 
-from .const import DOMAIN, SERVICE_ID
+from .const import DEFAULT_UPDATE_INTERVAL, DOMAIN, SERVICE_ID
 
 _LOGGER = logging.getLogger(__name__)
 
-UPDATE_INTERVAL = timedelta(minutes=30)
+UPDATE_INTERVAL = timedelta(minutes=DEFAULT_UPDATE_INTERVAL)  # 30
 
 
 async def async_setup_entry(
