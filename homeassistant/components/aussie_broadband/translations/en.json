@@ -14,15 +14,25 @@
             },
             "service": {
                 "data": {
-                    "service_id": "Service"
+                    "services": "Services"
                 },
-                "title": "Select Service"
+                "title": "Select Services"
             },
             "user": {
                 "data": {
                     "password": "Password",
                     "username": "Username"
                 }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "services": "Services"
+                },
+                "title": "Select Services"
             }
         }
     }

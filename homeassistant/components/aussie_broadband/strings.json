@@ -8,9 +8,9 @@
         }
       },
       "service": {
-        "title": "Select Service",
+        "title": "Select Services",
         "data": {
-          "service_id": "Service"
+          "services": "Services"
         }
       },
       "reauth_confirm": {
@@ -24,6 +24,16 @@
       "already_configured": "[%key:common::config_flow::abort::already_configured_service%]",
       "no_services_found": "No services were found for this account",
       "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Select Services",
+        "data": {
+          "services": "Services"
+        }
+      }
     }
   }
 }

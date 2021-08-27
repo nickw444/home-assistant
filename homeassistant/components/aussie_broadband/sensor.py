@@ -14,7 +14,7 @@ from homeassistant.helpers.update_coordinator import (
     DataUpdateCoordinator,
 )
 
-from .const import CONF_SERVICE_ID, DOMAIN
+from .const import DOMAIN, SERVICE_ID
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -29,13 +29,12 @@ async def async_setup_entry(
     services = hass.data[DOMAIN][entry.entry_id]["services"]
 
     entities = []
-
     for service in services:
 
         async def async_update_data():
-            if service.type == "PhoneMobile":
-                return await client.get_phoneusage(service[CONF_SERVICE_ID])
-            return await client.get_usage(service[CONF_SERVICE_ID])
+            if service["type"] == "PhoneMobile":
+                pass  # return await client.get_phoneusage(service[SERVICE_ID])
+            return await client.get_usage(service[SERVICE_ID])
 
         coordinator = DataUpdateCoordinator(
             hass,
@@ -46,12 +45,10 @@ async def async_setup_entry(
         )
         await coordinator.async_refresh()
 
-        if service.type == "PhoneMobile":
+        if service["type"] == "PhoneMobile":
             entities.extend(
                 [
-                    # AussieBroadandTotalUsage(coordinator, service),
-                    AussieBroadandDownloaded(coordinator, service),
-                    # AussieBroadandUploaded(coordinator, service),
+                    # AussieBroadandDownloaded(coordinator, service),
                     AussieBroadandBillingCycleLength(coordinator, service),
                     AussieBroadandBillingCycleRemaining(coordinator, service),
                 ]
@@ -79,11 +76,11 @@ class AussieBroadandSensorEntity(CoordinatorEntity, SensorEntity):
     def __init__(
         self,
         coordinator: DataUpdateCoordinator,
-        service_id: int,
+        service: dict,
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-        self._attr_unique_id = f"{service_id}:{self._attribute}"
+        self._attr_unique_id = f"{service[SERVICE_ID]}:{self._attribute}"
 
     @property
     def state(self):

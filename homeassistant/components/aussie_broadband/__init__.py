@@ -24,7 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             entry.data[CONF_PASSWORD],
             async_get_clientsession(hass),
         )
-        # await client.login()
+        await client.login()  # Will be optional later
         all_services = await client.get_services()
 
     except AuthenticationException as exc:
@@ -35,13 +35,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     ) as exc:
         raise ConfigEntryNotReady() from exc
 
-    services = next(
-        s for s in all_services if s["service_id"] in entry.data[CONF_SERVICES]
-    )
+    services = [
+        s for s in all_services if str(s["service_id"]) in entry.options[CONF_SERVICES]
+    ]
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = {
-        client: client,
-        services: services,
+        "client": client,
+        "services": services,
     }
     hass.config_entries.async_setup_platforms(entry, PLATFORMS)
 
