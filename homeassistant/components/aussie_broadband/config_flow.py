@@ -100,10 +100,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 {
                     vol.Required(
                         CONF_SERVICES, default=list(service_options.keys())
-                    ): cv.multi_select(service_options),
-                    vol.Optional(
-                        CONF_SCAN_INTERVAL, default=DEFAULT_UPDATE_INTERVAL
-                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
+                    ): cv.multi_select(service_options)
                 }
             ),
         )
@@ -179,7 +176,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                         default=self.config_entry.options.get(CONF_SERVICES),
                     ): cv.multi_select(service_options),
                     vol.Optional(
-                        CONF_SCAN_INTERVAL, default=DEFAULT_UPDATE_INTERVAL
+                        CONF_SCAN_INTERVAL,
+                        default=self.config_entry.options.get(
+                            CONF_SCAN_INTERVAL, DEFAULT_UPDATE_INTERVAL
+                        ),
                     ): vol.All(vol.Coerce(int), vol.Range(min=1)),
                 }
             ),
