@@ -51,5 +51,5 @@ async def test_sensor_states(hass):
         assert hass.states.get("sensor.mobile_mobile_calls").state == "2"
         assert hass.states.get("sensor.mobile_sms_sent").state == "4"
         assert hass.states.get("sensor.mobile_data_usage").state == "512"
-        assert hass.states.get("sensor.nbn_billing_cycle_length").state == "31"
-        assert hass.states.get("sensor.nbn_billing_cycle_remaining").state == "30"
+        assert hass.states.get("sensor.mobile_billing_cycle_length").state == "31"
+        assert hass.states.get("sensor.mobile_billing_cycle_remaining").state == "30"

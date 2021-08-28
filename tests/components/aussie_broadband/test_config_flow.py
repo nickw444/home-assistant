@@ -88,7 +88,7 @@ async def test_form(hass: HomeAssistant) -> None:
 
     assert result4["type"] == RESULT_TYPE_ABORT
 
-    # Test reauth
+    # Test failed reauth
     result5 = await hass.config_entries.flow.async_init(
         DOMAIN,
         context={"source": config_entries.SOURCE_REAUTH},
@@ -100,19 +100,35 @@ async def test_form(hass: HomeAssistant) -> None:
     assert result5["step_id"] == "reauth"
 
     with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
-        "aussiebb.asyncio.AussieBB.login", return_value=True
+        "aussiebb.asyncio.AussieBB.login", side_effect=AuthenticationException()
     ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]):
 
         result6 = await hass.config_entries.flow.async_configure(
             result5["flow_id"],
+            {
+                CONF_PASSWORD: "test-wrongpassword",
+            },
+        )
+        await hass.async_block_till_done()
+
+        assert result6["step_id"] == "reauth"
+
+    # Test successful reauth
+
+    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
+        "aussiebb.asyncio.AussieBB.login", return_value=True
+    ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]):
+
+        result7 = await hass.config_entries.flow.async_configure(
+            result6["flow_id"],
             {
                 CONF_PASSWORD: "test-newpassword",
             },
         )
         await hass.async_block_till_done()
 
-        assert result6["type"] == "abort"
-        assert result6["reason"] == "reauth_successful"
+        assert result7["type"] == "abort"
+        assert result7["reason"] == "reauth_successful"
 
 
 async def test_no_services(hass: HomeAssistant) -> None:

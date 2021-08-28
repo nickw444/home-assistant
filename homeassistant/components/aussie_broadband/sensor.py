@@ -142,7 +142,7 @@ class AussieBroadandPhoneInternet(AussieBroadandSensorEntity):
     """Representation of a Aussie Broadband Phone Data Usage sensor."""
 
     _attribute = "internet"
-    _name = "Data Used"
+    _name = "Data Usage"
     _attr_unit_of_measurement = DATA_KILOBYTES
     _attr_state_class = STATE_CLASS_TOTAL_INCREASING
 
