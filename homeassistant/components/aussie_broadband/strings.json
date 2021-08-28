@@ -10,8 +10,7 @@
       "service": {
         "title": "Select Services",
         "data": {
-          "services": "Services",
-          "scan_interval": "Update Interval (minutes)"
+          "services": "Services"
         }
       },
       "reauth": {
