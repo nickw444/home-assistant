@@ -6,7 +6,7 @@ import logging
 
 from homeassistant.components.sensor import STATE_CLASS_TOTAL_INCREASING, SensorEntity
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import DATA_MEGABYTES
+from homeassistant.const import DATA_MEGABYTES, DATA_KILOBYTES
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import (
@@ -33,7 +33,7 @@ async def async_setup_entry(
 
         async def async_update_data():
             if service["type"] == "PhoneMobile":
-                pass  # return await client.get_phoneusage(service[SERVICE_ID])
+                return await client.telephony_usage(service[SERVICE_ID])
             return await client.get_usage(service[SERVICE_ID])
 
         coordinator = DataUpdateCoordinator(
@@ -48,7 +48,10 @@ async def async_setup_entry(
         if service["type"] == "PhoneMobile":
             entities.extend(
                 [
-                    # AussieBroadandDownloaded(coordinator, service),
+                    AussieBroadandPhoneInternet(coordinator, service),
+                    AussieBroadandPhoneNational(coordinator, service),
+                    AussieBroadandPhoneMobile(coordinator, service),
+                    AussieBroadandPhoneSMS(coordinator, service),
                     AussieBroadandBillingCycleLength(coordinator, service),
                     AussieBroadandBillingCycleRemaining(coordinator, service),
                 ]
@@ -72,6 +75,7 @@ class AussieBroadandSensorEntity(CoordinatorEntity, SensorEntity):
     """Base class for Aussie Broadband metric sensors."""
 
     _attribute: str
+    _name: str
 
     def __init__(
         self,
@@ -81,10 +85,11 @@ class AussieBroadandSensorEntity(CoordinatorEntity, SensorEntity):
         """Initialize the sensor."""
         super().__init__(coordinator)
         self._attr_unique_id = f"{service[SERVICE_ID]}:{self._attribute}"
+        self._attr_name = f"{service['name']} {self._name}"
 
     @property
     def state(self):
-        """Return the state of the device."""
+        """Return the state of the sensor."""
         return self.coordinator.data[self._attribute]
 
 
@@ -92,7 +97,7 @@ class AussieBroadandTotalUsage(AussieBroadandSensorEntity):
     """Representation of a Aussie Broadband Total Usage sensor."""
 
     _attribute = "usedMb"
-    _attr_name = "Total Usage"
+    _name = "Total Usage"
     _attr_unit_of_measurement = DATA_MEGABYTES
     _attr_state_class = STATE_CLASS_TOTAL_INCREASING
 
@@ -101,7 +106,7 @@ class AussieBroadandDownloaded(AussieBroadandSensorEntity):
     """Representation of a Aussie Broadband Download Usage sensor."""
 
     _attribute = "downloadedMb"
-    _attr_name = "Downloaded"
+    _name = "Downloaded"
     _attr_unit_of_measurement = DATA_MEGABYTES
     _attr_state_class = STATE_CLASS_TOTAL_INCREASING
 
@@ -110,7 +115,7 @@ class AussieBroadandUploaded(AussieBroadandSensorEntity):
     """Representation of a Aussie Broadband Upload Usage sensor."""
 
     _attribute = "uploadedMb"
-    _attr_name = "Uploaded"
+    _name = "Uploaded"
     _attr_unit_of_measurement = DATA_MEGABYTES
     _attr_state_class = STATE_CLASS_TOTAL_INCREASING
 
@@ -119,7 +124,7 @@ class AussieBroadandBillingCycleLength(AussieBroadandSensorEntity):
     """Representation of a Aussie Broadband Billing Cycle Length sensor."""
 
     _attribute = "daysTotal"
-    _attr_name = "Billing Cycle Length"
+    _name = "Billing Cycle Length"
     _attr_unit_of_measurement = "days"
 
 
@@ -127,5 +132,58 @@ class AussieBroadandBillingCycleRemaining(AussieBroadandSensorEntity):
     """Representation of a Aussie Broadband Billing Cycle Remaining sensor."""
 
     _attribute = "daysRemaining"
-    _attr_name = "Billing Cycle Remaining"
+    _name = "Billing Cycle Remaining"
     _attr_unit_of_measurement = "days"
+
+
+class AussieBroadandPhoneInternet(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Phone Data Usage sensor."""
+
+    _attribute = "internet"
+    _name = "Data Used"
+    _attr_unit_of_measurement = DATA_KILOBYTES
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+        return self.coordinator.data[self._attribute]["kbytes"]
+
+
+class AussieBroadandPhoneNational(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Phone Data Usaage sensor."""
+
+    _attribute = "national"
+    _name = "National Calls"
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+        return self.coordinator.data[self._attribute]["calls"]
+
+
+class AussieBroadandPhoneMobile(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Phone Data Usaage sensor."""
+
+    _attribute = "mobile"
+    _name = "Mobile Calls"
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+        return self.coordinator.data[self._attribute]["calls"]
+
+
+class AussieBroadandPhoneSMS(AussieBroadandSensorEntity):
+    """Representation of a Aussie Broadband Phone SMS count sensor."""
+
+    _attribute = "sms"
+    _name = "SMS Sent"
+    _attr_state_class = STATE_CLASS_TOTAL_INCREASING
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+        return self.coordinator.data[self._attribute]["calls"]
