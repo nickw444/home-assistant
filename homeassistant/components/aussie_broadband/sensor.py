@@ -44,7 +44,8 @@ async def async_setup_entry(
             update_interval=UPDATE_INTERVAL,
             update_method=async_update_data,
         )
-        await coordinator.async_refresh()
+        # await coordinator.async_refresh()
+        await coordinator.async_config_entry_first_refresh()
 
         if service["type"] == "PhoneMobile":
             entities.extend(
