@@ -26,7 +26,7 @@ async def async_setup_entry(
     client = hass.data[DOMAIN][entry.entry_id]["client"]
     services = hass.data[DOMAIN][entry.entry_id]["services"]
     UPDATE_INTERVAL = timedelta(
-        minutes=entry.options[CONF_SCAN_INTERVAL] or DEFAULT_UPDATE_INTERVAL
+        minutes=entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_UPDATE_INTERVAL)
     )
 
     entities = []
