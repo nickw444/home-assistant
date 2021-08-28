@@ -6,7 +6,7 @@ import logging
 
 from homeassistant.components.sensor import STATE_CLASS_TOTAL_INCREASING, SensorEntity
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import DATA_KILOBYTES, DATA_MEGABYTES
+from homeassistant.const import CONF_SCAN_INTERVAL, DATA_KILOBYTES, DATA_MEGABYTES
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import (
@@ -18,8 +18,6 @@ from .const import DEFAULT_UPDATE_INTERVAL, DOMAIN, SERVICE_ID
 
 _LOGGER = logging.getLogger(__name__)
 
-UPDATE_INTERVAL = timedelta(minutes=DEFAULT_UPDATE_INTERVAL)  # 30
-
 
 async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
@@ -27,6 +25,9 @@ async def async_setup_entry(
     """Set up Aussie Broadband sensor from a config entry."""
     client = hass.data[DOMAIN][entry.entry_id]["client"]
     services = hass.data[DOMAIN][entry.entry_id]["services"]
+    UPDATE_INTERVAL = timedelta(
+        minutes=entry.options[CONF_SCAN_INTERVAL] or DEFAULT_UPDATE_INTERVAL
+    )
 
     entities = []
     for service in services:

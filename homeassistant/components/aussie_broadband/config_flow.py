@@ -7,13 +7,13 @@ from aussiebb.asyncio import AussieBB, AuthenticationException
 import voluptuous as vol
 
 from homeassistant import config_entries
-from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
+from homeassistant.const import CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME
 from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 import homeassistant.helpers.config_validation as cv
 
-from .const import CONF_SERVICES, DOMAIN, SERVICE_ID
+from .const import CONF_SERVICES, DEFAULT_UPDATE_INTERVAL, DOMAIN, SERVICE_ID
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -28,7 +28,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         self.services = None
         self.client = None
 
-    async def auth(self, user_input: dict[str]):
+    async def auth(self, user_input: dict[str, str]):
         """Reusable Auth Helper."""
         errors = {}
         try:
@@ -100,7 +100,10 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 {
                     vol.Required(
                         CONF_SERVICES, default=list(service_options.keys())
-                    ): cv.multi_select(service_options)
+                    ): cv.multi_select(service_options),
+                    vol.Optional(
+                        CONF_SCAN_INTERVAL, default=DEFAULT_UPDATE_INTERVAL
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
                 }
             ),
         )
@@ -123,12 +126,14 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
             if self.client is not None:
                 entry = await self.async_set_unique_id(self.username)
-                self.hass.config_entries.async_update_entry(
-                    entry,
-                    data=data,
-                )
-                await self.hass.config_entries.async_reload(entry.entry_id)
-                return self.async_abort(reason="reauth_successful")
+                if entry:
+                    self.hass.config_entries.async_update_entry(
+                        entry,
+                        data=data,
+                    )
+                    await self.hass.config_entries.async_reload(entry.entry_id)
+                    return self.async_abort(reason="reauth_successful")
+                return self.async_create_entry(title=self.username, data=data)
 
         return self.async_show_form(
             step_id="reauth",
@@ -172,7 +177,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                     vol.Required(
                         CONF_SERVICES,
                         default=self.config_entry.options.get(CONF_SERVICES),
-                    ): cv.multi_select(service_options)
+                    ): cv.multi_select(service_options),
+                    vol.Optional(
+                        CONF_SCAN_INTERVAL, default=DEFAULT_UPDATE_INTERVAL
+                    ): vol.All(vol.Coerce(int), vol.Range(min=1)),
                 }
             ),
         )

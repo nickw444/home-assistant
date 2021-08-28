@@ -9,11 +9,16 @@
             "invalid_auth": "Invalid authentication"
         },
         "step": {
-            "reauth_confirm": {
+            "reauth": {
+                "data": {
+                    "password": "Password",
+                    "username": "Username"
+                },
                 "title": "Reauthenticate Integration"
             },
             "service": {
                 "data": {
+                    "scan_interval": "Update Interval (minutes)",
                     "services": "Services"
                 },
                 "title": "Select Services"
@@ -30,6 +35,7 @@
         "step": {
             "init": {
                 "data": {
+                    "scan_interval": "Update Interval (minutes)",
                     "services": "Services"
                 },
                 "title": "Select Services"
