@@ -126,6 +126,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     await self.hass.config_entries.async_reload(entry.entry_id)
                     return self.async_abort(reason="reauth_successful")
                 return self.async_create_entry(title=self.username, data=data)
+
             errors = {"base": "invalid_auth"}
 
         return self.async_show_form(
