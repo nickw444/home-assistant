@@ -1,24 +1,24 @@
 {
     "config": {
         "abort": {
-            "already_configured": "Service is already configured",
+            "already_configured": "Account is already configured",
             "no_services_found": "No services were found for this account",
             "reauth_successful": "Re-authentication was successful"
         },
         "error": {
+            "cannot_connect": "Failed to connect",
             "invalid_auth": "Invalid authentication"
         },
         "step": {
             "reauth": {
                 "data": {
-                    "password": "Password",
-                    "username": "Username"
+                    "password": "Password"
                 },
+                "description": "Update password for {username}",
                 "title": "Reauthenticate Integration"
             },
             "service": {
                 "data": {
-                    "scan_interval": "Update Interval (minutes)",
                     "services": "Services"
                 },
                 "title": "Select Services"
@@ -32,6 +32,10 @@
         }
     },
     "options": {
+        "abort": {
+            "cannot_connect": "Failed to connect",
+            "invalid_auth": "Invalid authentication"
+        },
         "step": {
             "init": {
                 "data": {

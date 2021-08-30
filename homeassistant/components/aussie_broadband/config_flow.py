@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from aiohttp import ClientError
 from aussiebb.asyncio import AussieBB, AuthenticationException
 import voluptuous as vol
 
@@ -20,6 +21,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Aussie Broadband."""
 
     VERSION = 1
+    _reauth_username: str
 
     def __init__(self):
         """Initialize the config flow."""
@@ -38,7 +40,9 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             )
             return await self.client.login()
         except AuthenticationException:
-            return False
+            return {"base": "invalid_auth"}
+        except ClientError:
+            return {"base": "cannot_connect"}
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
@@ -46,7 +50,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors = None
         if user_input is not None:
-            if await self.auth(user_input):
+            auth = await self.auth(user_input)
+            if auth is True:
                 await self.async_set_unique_id(user_input[CONF_USERNAME])
                 self._abort_if_unique_id_configured()
 
@@ -57,16 +62,15 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     return self.async_abort(reason="no_services_found")
 
                 if len(self.services) == 1:
-                    # self.options[CONF_SERVICES] = [str(self.services[0][SERVICE_ID])]
                     return self.async_create_entry(
                         title=self.data[CONF_USERNAME],
                         data=self.data,
                         options={CONF_SERVICES: [str(self.services[0][SERVICE_ID])]},
                     )
 
-                # account has more than one service, select service to add
+                # Account has more than one service, select service to add
                 return await self.async_step_service()
-            errors = {"base": "invalid_auth"}
+            errors = auth
 
         return self.async_show_form(
             step_id="user",
@@ -84,7 +88,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     ) -> FlowResult:
         """Handle the optional service selection step."""
         if user_input is not None:
-            # self.options[CONF_SERVICES] = user_input[CONF_SERVICES]
             return self.async_create_entry(
                 title=self.data[CONF_USERNAME], data=self.data, options=user_input
             )
@@ -107,17 +110,17 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle reauth."""
         errors = None
         if user_input and user_input.get(CONF_USERNAME):
-            self.username = user_input[CONF_USERNAME]
-            self.context["title_placeholders"] = {CONF_USERNAME: self.username}
+            self._reauth_username = user_input[CONF_USERNAME]
 
         elif user_input and user_input.get(CONF_PASSWORD):
             data = {
-                CONF_USERNAME: self.username,
+                CONF_USERNAME: self._reauth_username,
                 CONF_PASSWORD: user_input[CONF_PASSWORD],
             }
 
-            if await self.auth(data):
-                entry = await self.async_set_unique_id(self.username)
+            auth = await self.auth(data)
+            if auth is True:
+                entry = await self.async_set_unique_id(self._reauth_username)
                 if entry:
                     self.hass.config_entries.async_update_entry(
                         entry,
@@ -125,12 +128,12 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     )
                     await self.hass.config_entries.async_reload(entry.entry_id)
                     return self.async_abort(reason="reauth_successful")
-                return self.async_create_entry(title=self.username, data=data)
-
-            errors = {"base": "invalid_auth"}
+                return self.async_create_entry(title=self._reauth_username, data=data)
+            errors = auth
 
         return self.async_show_form(
             step_id="reauth",
+            description_placeholders={"username": self._reauth_username},
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_PASSWORD): str,
@@ -159,10 +162,19 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         """Manage the options."""
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
-            # await self.hass.config_entries.async_reload(self.config_entry.entry_id)
 
+        if (
+            DOMAIN not in self.hass.data
+            or self.config_entry.entry_id not in self.hass.data[DOMAIN]
+        ):
+            return self.async_abort(reason="unknown")
         data = self.hass.data[DOMAIN][self.config_entry.entry_id]
-        services = await data["client"].get_services()
+        try:
+            services = await data["client"].get_services()
+        except AuthenticationException:
+            return self.async_abort(reason="invalid_auth")
+        except ClientError:
+            return self.async_abort(reason="cannot_connect")
         service_options = {str(s[SERVICE_ID]): s["description"] for s in services}
         return self.async_show_form(
             step_id="init",

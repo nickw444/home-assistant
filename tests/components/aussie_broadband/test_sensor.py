@@ -27,13 +27,9 @@ MOCK_MOBILE_USAGE = {
 }
 
 
-async def test_sensor_states(hass):
+async def test_nbn_sensor_states(hass):
     """Tests that the sensors are correct."""
-    with patch(
-        "aussiebb.asyncio.AussieBB.get_usage", return_value=MOCK_NBN_USAGE
-    ), patch(
-        "aussiebb.asyncio.AussieBB.telephony_usage", return_value=MOCK_MOBILE_USAGE
-    ):
+    with patch("aussiebb.asyncio.AussieBB.get_usage", return_value=MOCK_NBN_USAGE):
 
         await setup_platform(hass, [SENSOR_DOMAIN])
 
@@ -42,6 +38,13 @@ async def test_sensor_states(hass):
         assert hass.states.get("sensor.nbn_uploaded").state == "4321"
         assert hass.states.get("sensor.nbn_billing_cycle_length").state == "28"
         assert hass.states.get("sensor.nbn_billing_cycle_remaining").state == "25"
+
+
+async def test_phone_sensor_states(hass):
+    """Tests that the sensors are correct."""
+    with patch("aussiebb.asyncio.AussieBB.get_usage", return_value=MOCK_MOBILE_USAGE):
+
+        await setup_platform(hass, [SENSOR_DOMAIN])
 
         assert hass.states.get("sensor.mobile_national_calls").state == "1"
         assert hass.states.get("sensor.mobile_mobile_calls").state == "2"

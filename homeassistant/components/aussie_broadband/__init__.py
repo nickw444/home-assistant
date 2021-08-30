@@ -18,13 +18,14 @@ PLATFORMS = ["sensor"]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up Aussie Broadband from a config entry."""
 
+    # Login to the Aussie Broadband API and retrieve the current service list
     try:
         client = AussieBB(
             entry.data[CONF_USERNAME],
             entry.data[CONF_PASSWORD],
             async_get_clientsession(hass),
         )
-        # await client.login()  # Will be optional later
+        await client.login()
         all_services = await client.get_services()
 
     except AuthenticationException as exc:
@@ -32,10 +33,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     except ClientError as exc:
         raise ConfigEntryNotReady() from exc
 
+    # Filter the service list to those that are enabled in options
     services = [
         s for s in all_services if str(s["service_id"]) in entry.options[CONF_SERVICES]
     ]
 
+    # Setup the integration
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = {
         "client": client,
         "services": services,
@@ -52,7 +55,7 @@ async def update_listener(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Unload a config entry."""
+    """Unload the config entry."""
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data[DOMAIN].pop(entry.entry_id)

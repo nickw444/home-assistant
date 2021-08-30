@@ -22,31 +22,33 @@ _LOGGER = logging.getLogger(__name__)
 async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
 ):
-    """Set up Aussie Broadband sensor from a config entry."""
+    """Set up the Aussie Broadband sensor platform from a config entry."""
     client = hass.data[DOMAIN][entry.entry_id]["client"]
     services = hass.data[DOMAIN][entry.entry_id]["services"]
-    UPDATE_INTERVAL = timedelta(
+    update_interval = timedelta(
         minutes=entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_UPDATE_INTERVAL)
     )
 
+    # Create an appropriate refresh function
+    def update_data_factory(service_id):
+        async def async_update_data():
+            return await client.get_usage(service_id)
+
+        return async_update_data
+
     entities = []
     for service in services:
-
-        async def async_update_data():
-            if service["type"] == "PhoneMobile":
-                return await client.telephony_usage(service[SERVICE_ID])
-            return await client.get_usage(service[SERVICE_ID])
-
+        # Initiate a Data Update Coordinator for this endpoint
         coordinator = DataUpdateCoordinator(
             hass,
             _LOGGER,
             name=service["service_id"],
-            update_interval=UPDATE_INTERVAL,
-            update_method=async_update_data,
-        )
-        # await coordinator.async_refresh()
+            update_interval=update_interval,
+            update_method=update_data_factory(service[SERVICE_ID]),
+        )  # type: DataUpdateCoordinator
         await coordinator.async_config_entry_first_refresh()
 
+        # Create the appropriate entities based on the service type
         if service["type"] == "PhoneMobile":
             entities.extend(
                 [
