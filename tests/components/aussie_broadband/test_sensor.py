@@ -27,10 +27,6 @@ MOCK_MOBILE_USAGE = {
 }
 
 
-# @patch("aussiebb.asyncio.AussieBB.get_usage", return_value=MOCK_NBN_USAGE)
-# @patch("aussiebb.asyncio.AussieBB.telephony_usage", return_value=MOCK_MOBILE_USAGE)
-
-
 async def test_sensor_states(hass):
     """Tests that the sensors are correct."""
     with patch(
