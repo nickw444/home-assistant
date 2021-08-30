@@ -39,7 +39,7 @@ async def test_sensor_states(hass):
         "aussiebb.asyncio.AussieBB.telephony_usage", return_value=MOCK_MOBILE_USAGE
     ):
 
-        await setup_platform(hass, SENSOR_DOMAIN)
+        await setup_platform(hass, [SENSOR_DOMAIN])
 
         assert hass.states.get("sensor.nbn_total_usage").state == "54321"
         assert hass.states.get("sensor.nbn_downloaded").state == "50000"

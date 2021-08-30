@@ -5,7 +5,7 @@ from aussiebb.asyncio import AuthenticationException
 
 from homeassistant import config_entries
 from homeassistant.components.aussie_broadband.const import CONF_SERVICES, DOMAIN
-from homeassistant.const import CONF_PASSWORD, CONF_USERNAME  # CONF_SCAN_INTERVAL
+from homeassistant.const import CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import (
     RESULT_TYPE_ABORT,
@@ -13,22 +13,10 @@ from homeassistant.data_entry_flow import (
     RESULT_TYPE_FORM,
 )
 
-TEST_USERNAME = "test-username"
-TEST_PASSWORD = "test-password"
-FAKE_SERVICES = [
-    {
-        "service_id": "12345678",
-        "description": "Fake ABB NBN Service",
-        "type": "NBN",
-        "name": "NBN",
-    },
-    {
-        "service_id": "87654321",
-        "description": "Fake ABB Mobile Service",
-        "type": "PhoneMobile",
-        "name": "Mobile",
-    },
-]
+from .common import FAKE_DATA, FAKE_SERVICES, setup_platform
+
+TEST_USERNAME = FAKE_DATA[CONF_USERNAME]
+TEST_PASSWORD = FAKE_DATA[CONF_PASSWORD]
 
 
 async def test_form(hass: HomeAssistant) -> None:
@@ -49,10 +37,7 @@ async def test_form(hass: HomeAssistant) -> None:
     ) as mock_setup_entry:
         result2 = await hass.config_entries.flow.async_configure(
             result1["flow_id"],
-            {
-                CONF_USERNAME: TEST_USERNAME,
-                CONF_PASSWORD: TEST_PASSWORD,
-            },
+            FAKE_DATA,
         )
         await hass.async_block_till_done()
 
@@ -65,37 +50,11 @@ async def test_form(hass: HomeAssistant) -> None:
     assert result2["options"] == {CONF_SERVICES: ["12345678"]}
     assert len(mock_setup_entry.mock_calls) == 1
 
-    # Test Already configured
-    result3 = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": config_entries.SOURCE_USER}
-    )
-    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
-        "aussiebb.asyncio.AussieBB.login", return_value=True
-    ), patch(
-        "aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]
-    ), patch(
-        "homeassistant.components.aussie_broadband.async_setup_entry",
-        return_value=True,
-    ) as mock_setup_entry:
-        result4 = await hass.config_entries.flow.async_configure(
-            result3["flow_id"],
-            {
-                CONF_USERNAME: TEST_USERNAME,
-                CONF_PASSWORD: TEST_PASSWORD,
-            },
-        )
-        await hass.async_block_till_done()
-
-    assert result4["type"] == RESULT_TYPE_ABORT
-
     # Test failed reauth
     result5 = await hass.config_entries.flow.async_init(
         DOMAIN,
         context={"source": config_entries.SOURCE_REAUTH},
-        data={
-            CONF_USERNAME: TEST_USERNAME,
-            CONF_PASSWORD: TEST_PASSWORD,
-        },
+        data=FAKE_DATA,
     )
     assert result5["step_id"] == "reauth"
 
@@ -131,6 +90,49 @@ async def test_form(hass: HomeAssistant) -> None:
         assert result7["reason"] == "reauth_successful"
 
 
+async def test_already_configured(hass: HomeAssistant) -> None:
+    """Test already configured."""
+    # entry = await setup_platform(hass)
+    result1 = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": config_entries.SOURCE_USER}
+    )
+
+    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
+        "aussiebb.asyncio.AussieBB.login", return_value=True
+    ), patch(
+        "aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]
+    ), patch(
+        "homeassistant.components.aussie_broadband.async_setup_entry",
+        return_value=True,
+    ) as mock_setup_entry:
+        await hass.config_entries.flow.async_configure(
+            result1["flow_id"],
+            FAKE_DATA,
+        )
+        await hass.async_block_till_done()
+
+    # Test Already configured
+    result3 = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": config_entries.SOURCE_USER}
+    )
+    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
+        "aussiebb.asyncio.AussieBB.login", return_value=True
+    ), patch(
+        "aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]
+    ), patch(
+        "homeassistant.components.aussie_broadband.async_setup_entry",
+        return_value=True,
+    ) as mock_setup_entry:
+        result4 = await hass.config_entries.flow.async_configure(
+            result3["flow_id"],
+            FAKE_DATA,
+        )
+        await hass.async_block_till_done()
+
+    assert result4["type"] == RESULT_TYPE_ABORT
+    assert len(mock_setup_entry.mock_calls) == 0
+
+
 async def test_no_services(hass: HomeAssistant) -> None:
     """Test when there are no services."""
     result1 = await hass.config_entries.flow.async_init(
@@ -147,10 +149,7 @@ async def test_no_services(hass: HomeAssistant) -> None:
     ) as mock_setup_entry:
         result2 = await hass.config_entries.flow.async_configure(
             result1["flow_id"],
-            {
-                CONF_USERNAME: TEST_USERNAME,
-                CONF_PASSWORD: TEST_PASSWORD,
-            },
+            FAKE_DATA,
         )
         await hass.async_block_till_done()
 
@@ -172,10 +171,7 @@ async def test_form_multiple_services(hass: HomeAssistant) -> None:
     ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=FAKE_SERVICES):
         result2 = await hass.config_entries.flow.async_configure(
             result["flow_id"],
-            {
-                CONF_USERNAME: TEST_USERNAME,
-                CONF_PASSWORD: TEST_PASSWORD,
-            },
+            FAKE_DATA,
         )
         await hass.async_block_till_done()
 
@@ -195,10 +191,7 @@ async def test_form_multiple_services(hass: HomeAssistant) -> None:
 
     assert result3["type"] == RESULT_TYPE_CREATE_ENTRY
     assert result3["title"] == TEST_USERNAME
-    assert result3["data"] == {
-        CONF_USERNAME: TEST_USERNAME,
-        CONF_PASSWORD: TEST_PASSWORD,
-    }
+    assert result3["data"] == FAKE_DATA
     assert result3["options"] == {
         CONF_SERVICES: [FAKE_SERVICES[1]["service_id"]],
     }
@@ -216,11 +209,26 @@ async def test_form_invalid_auth(hass: HomeAssistant) -> None:
     ):
         result2 = await hass.config_entries.flow.async_configure(
             result1["flow_id"],
-            {
-                CONF_USERNAME: TEST_USERNAME,
-                CONF_PASSWORD: TEST_PASSWORD,
-            },
+            FAKE_DATA,
         )
 
     assert result2["type"] == RESULT_TYPE_FORM
     assert result2["errors"] == {"base": "invalid_auth"}
+
+
+async def test_options_flow(hass):
+    """Test options flow."""
+    entry = await setup_platform(hass)
+
+    with patch("aussiebb.asyncio.AussieBB.get_services", return_value=FAKE_SERVICES):
+
+        result3 = await hass.config_entries.options.async_init(entry.entry_id)
+        assert result3["type"] == RESULT_TYPE_FORM
+        assert result3["step_id"] == "init"
+
+        result4 = await hass.config_entries.options.async_configure(
+            result3["flow_id"],
+            user_input={CONF_SERVICES: [], CONF_SCAN_INTERVAL: 61},
+        )
+        assert result4["type"] == RESULT_TYPE_CREATE_ENTRY
+        assert entry.options == {CONF_SERVICES: [], CONF_SCAN_INTERVAL: 61}

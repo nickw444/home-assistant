@@ -24,25 +24,31 @@ FAKE_SERVICES = [
     },
 ]
 
+FAKE_DATA = {
+    CONF_USERNAME: "test-username",
+    CONF_PASSWORD: "test-password",
+}
 
-async def setup_platform(hass, platform, side_effect=None):
+
+async def setup_platform(hass, platforms=[], side_effect=None):
     """Set up the Aussie Broadband platform."""
     mock_entry = MockConfigEntry(
         domain=AUSSIE_BROADBAND_DOMAIN,
-        data={
-            CONF_USERNAME: "test-username",
-            CONF_PASSWORD: "test-password",
-        },
+        data=FAKE_DATA,
         options={CONF_SERVICES: ["12345678", "87654321"], CONF_SCAN_INTERVAL: 30},
     )
     mock_entry.add_to_hass(hass)
 
-    with patch(
-        "homeassistant.components.aussie_broadband.PLATFORMS", [platform]
-    ), patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
-        "aussiebb.asyncio.AussieBB.login", return_value=True, side_effect=side_effect
+    with patch("homeassistant.components.aussie_broadband.PLATFORMS", platforms), patch(
+        "aussiebb.asyncio.AussieBB.__init__", return_value=None
     ), patch(
-        "aussiebb.asyncio.AussieBB.get_services", return_value=FAKE_SERVICES
+        "aussiebb.asyncio.AussieBB.login",
+        return_value=True,
+        side_effect=side_effect,
+    ), patch(
+        "aussiebb.asyncio.AussieBB.get_services",
+        return_value=FAKE_SERVICES,
+        side_effect=side_effect,
     ):
         await hass.config_entries.async_setup(mock_entry.entry_id)
         await hass.async_block_till_done()

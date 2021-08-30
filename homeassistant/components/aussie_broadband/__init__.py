@@ -1,8 +1,8 @@
 """The Aussie Broadband integration."""
 from __future__ import annotations
 
+from aiohttp import ClientError
 from aussiebb.asyncio import AussieBB, AuthenticationException
-import requests
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
@@ -24,15 +24,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             entry.data[CONF_PASSWORD],
             async_get_clientsession(hass),
         )
-        await client.login()  # Will be optional later
+        # await client.login()  # Will be optional later
         all_services = await client.get_services()
 
     except AuthenticationException as exc:
         raise ConfigEntryAuthFailed() from exc
-    except (
-        requests.exceptions.ConnectionError,
-        requests.exceptions.HTTPError,
-    ) as exc:
+    except ClientError as exc:
         raise ConfigEntryNotReady() from exc
 
     services = [
