@@ -48,76 +48,6 @@ async def test_form(hass: HomeAssistant) -> None:
     assert len(mock_setup_entry.mock_calls) == 1
 
 
-async def test_reauth(hass: HomeAssistant) -> None:
-    """Test reauth flow."""
-
-    await setup.async_setup_component(hass, "persistent_notification", {})
-
-    # Test reauth but the entry doesn't exist
-    result1 = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": config_entries.SOURCE_REAUTH}, data=FAKE_DATA
-    )
-
-    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
-        "aussiebb.asyncio.AussieBB.login", return_value=True
-    ), patch(
-        "aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]
-    ), patch(
-        "homeassistant.components.aussie_broadband.async_setup_entry",
-        return_value=True,
-    ):
-        result2 = await hass.config_entries.flow.async_configure(
-            result1["flow_id"],
-            {
-                CONF_PASSWORD: TEST_PASSWORD,
-            },
-        )
-        await hass.async_block_till_done()
-
-        assert result2["type"] == RESULT_TYPE_CREATE_ENTRY
-        assert result2["title"] == TEST_USERNAME
-        assert result2["data"] == FAKE_DATA
-
-    # Test failed reauth
-    result5 = await hass.config_entries.flow.async_init(
-        DOMAIN,
-        context={"source": config_entries.SOURCE_REAUTH},
-        data=FAKE_DATA,
-    )
-    assert result5["step_id"] == "reauth"
-
-    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
-        "aussiebb.asyncio.AussieBB.login", side_effect=AuthenticationException()
-    ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]):
-
-        result6 = await hass.config_entries.flow.async_configure(
-            result5["flow_id"],
-            {
-                CONF_PASSWORD: "test-wrongpassword",
-            },
-        )
-        await hass.async_block_till_done()
-
-        assert result6["step_id"] == "reauth"
-
-    # Test successful reauth
-
-    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
-        "aussiebb.asyncio.AussieBB.login", return_value=True
-    ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]):
-
-        result7 = await hass.config_entries.flow.async_configure(
-            result6["flow_id"],
-            {
-                CONF_PASSWORD: "test-newpassword",
-            },
-        )
-        await hass.async_block_till_done()
-
-        assert result7["type"] == "abort"
-        assert result7["reason"] == "reauth_successful"
-
-
 async def test_already_configured(hass: HomeAssistant) -> None:
     """Test already configured."""
     # Setup an entry
@@ -242,6 +172,75 @@ async def test_form_invalid_auth(hass: HomeAssistant) -> None:
 
     assert result2["type"] == RESULT_TYPE_FORM
     assert result2["errors"] == {"base": "invalid_auth"}
+
+
+async def test_reauth(hass: HomeAssistant) -> None:
+    """Test reauth flow."""
+
+    await setup.async_setup_component(hass, "persistent_notification", {})
+
+    # Test reauth but the entry doesn't exist
+    result1 = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": config_entries.SOURCE_REAUTH}, data=FAKE_DATA
+    )
+
+    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
+        "aussiebb.asyncio.AussieBB.login", return_value=True
+    ), patch(
+        "aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]
+    ), patch(
+        "homeassistant.components.aussie_broadband.async_setup_entry",
+        return_value=True,
+    ):
+        result2 = await hass.config_entries.flow.async_configure(
+            result1["flow_id"],
+            {
+                CONF_PASSWORD: TEST_PASSWORD,
+            },
+        )
+        await hass.async_block_till_done()
+
+        assert result2["type"] == RESULT_TYPE_CREATE_ENTRY
+        assert result2["title"] == TEST_USERNAME
+        assert result2["data"] == FAKE_DATA
+
+    # Test failed reauth
+    result5 = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": config_entries.SOURCE_REAUTH},
+        data=FAKE_DATA,
+    )
+    assert result5["step_id"] == "reauth"
+
+    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
+        "aussiebb.asyncio.AussieBB.login", side_effect=AuthenticationException()
+    ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]):
+
+        result6 = await hass.config_entries.flow.async_configure(
+            result5["flow_id"],
+            {
+                CONF_PASSWORD: "test-wrongpassword",
+            },
+        )
+        await hass.async_block_till_done()
+
+        assert result6["step_id"] == "reauth"
+
+    # Test successful reauth
+    with patch("aussiebb.asyncio.AussieBB.__init__", return_value=None), patch(
+        "aussiebb.asyncio.AussieBB.login", return_value=True
+    ), patch("aussiebb.asyncio.AussieBB.get_services", return_value=[FAKE_SERVICES[0]]):
+
+        result7 = await hass.config_entries.flow.async_configure(
+            result6["flow_id"],
+            {
+                CONF_PASSWORD: "test-newpassword",
+            },
+        )
+        await hass.async_block_till_done()
+
+        assert result7["type"] == "abort"
+        assert result7["reason"] == "reauth_successful"
 
 
 async def test_options_flow(hass):
