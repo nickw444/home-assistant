@@ -306,3 +306,17 @@ async def test_options_flow_network_failure(hass):
         result1 = await hass.config_entries.options.async_init(entry.entry_id)
         assert result1["type"] == RESULT_TYPE_ABORT
         assert result1["reason"] == "cannot_connect"
+
+
+async def test_options_flow_not_loaded(hass):
+    """Test the options flow aborts when the entry has unloaded due to a reauth."""
+
+    entry = await setup_platform(hass)
+
+    with patch(
+        "aussiebb.asyncio.AussieBB.get_services", side_effect=AuthenticationException()
+    ):
+        entry.state = config_entries.ConfigEntryState.NOT_LOADED
+        result1 = await hass.config_entries.options.async_init(entry.entry_id)
+        assert result1["type"] == RESULT_TYPE_ABORT
+        assert result1["reason"] == "unknown"

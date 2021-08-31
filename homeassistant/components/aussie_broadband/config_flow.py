@@ -163,10 +163,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
 
-        if (
-            DOMAIN not in self.hass.data
-            or self.config_entry.entry_id not in self.hass.data[DOMAIN]
-        ):
+        if self.config_entry.state != config_entries.ConfigEntryState.LOADED:
             return self.async_abort(reason="unknown")
         data = self.hass.data[DOMAIN][self.config_entry.entry_id]
         try:
