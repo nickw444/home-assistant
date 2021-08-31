@@ -50,8 +50,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors = None
         if user_input is not None:
-            auth = await self.auth(user_input)
-            if auth is True:
+            result = await self.auth(user_input)
+            if result is True:
                 await self.async_set_unique_id(user_input[CONF_USERNAME])
                 self._abort_if_unique_id_configured()
 
@@ -70,7 +70,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
                 # Account has more than one service, select service to add
                 return await self.async_step_service()
-            errors = auth
+            errors = result
 
         return self.async_show_form(
             step_id="user",
@@ -118,8 +118,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 CONF_PASSWORD: user_input[CONF_PASSWORD],
             }
 
-            auth = await self.auth(data)
-            if auth is True:
+            result = await self.auth(data)
+            if result is True:
                 entry = await self.async_set_unique_id(self._reauth_username)
                 if entry:
                     self.hass.config_entries.async_update_entry(
@@ -129,7 +129,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     await self.hass.config_entries.async_reload(entry.entry_id)
                     return self.async_abort(reason="reauth_successful")
                 return self.async_create_entry(title=self._reauth_username, data=data)
-            errors = auth
+            errors = result
 
         return self.async_show_form(
             step_id="reauth",
